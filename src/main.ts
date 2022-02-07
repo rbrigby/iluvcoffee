@@ -11,10 +11,13 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      }
     }),
   );
-  app.useGlobalFilters(new HttpExceptionFilter());
-  app.useGlobalGuards(new ApiKeyGuard());
+  // app.useGlobalFilters(new HttpExceptionFilter());
+  // app.useGlobalGuards(new ApiKeyGuard()); 
   await app.listen(3000);
 }
 bootstrap();
