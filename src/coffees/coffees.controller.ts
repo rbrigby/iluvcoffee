@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Patch, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Patch, Query, ParseIntPipe } from '@nestjs/common';
 import { Public } from 'src/common/decorators/public.decorator';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
@@ -18,7 +18,7 @@ export class CoffeesController {
     // return `This action returns all coffees. Limit: ${limit}, offset: ${offset}`;
   }
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     console.log(typeof id);
     return this.coffeesService.findOne('' + id);
   }
